@@ -3,17 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const ChatSlice = createSlice({
 	name: "Chat",
 	initialState: {
-		messages: [],
+		// messages: [],
 		users: [],
 		starredMessage: [],
+		user: {
+			messages: [],
+			userDetails: {},
+		},
 	},
 	reducers: {
-		addMessage: (state, action) => {
+		addUser: (state, action) => {
 			state.users = state.users.concat(action.payload);
 		},
-		addUser: () => {},
+		singleUser: (state, action) => {
+			state.user.userDetails = action.payload;
+		},
+		addMessage: (state, action) => {
+			console.log(action.payload);
+			state.user.messages = state.user.messages.concat(action.payload);
+		},
 		addStarredMessage: () => {},
 	},
 });
-export const { addMessage } = ChatSlice.actions;
+export const { addUser, singleUser, addMessage } = ChatSlice.actions;
 export default ChatSlice.reducer;

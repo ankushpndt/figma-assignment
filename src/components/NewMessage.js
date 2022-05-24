@@ -1,16 +1,18 @@
 import React from "react";
-import NewMessage from "../assets/newmessage.svg";
-const NewMessageOverview = () => {
+import { useSelector } from "react-redux";
+
+const NewMessage = () => {
+	const messages = useSelector((state) => state.Chat.user.messages);
+	console.log(messages);
 	return (
-		<div>
-			<img
-				src={NewMessage}
-				alt="new__message"
-				className="new__message__image"
-			/>
-			<input type="text" />
+		<div className="new__message__container">
+			<ul>
+				{messages?.map((msg) => {
+					return <li style={{ listStyle: "none" }}>{msg}</li>;
+				})}
+			</ul>
 		</div>
 	);
 };
 
-export default NewMessageOverview;
+export default NewMessage;

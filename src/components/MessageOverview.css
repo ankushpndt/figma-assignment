@@ -8,3 +8,95 @@
 	width: 200px;
 	padding: 1rem;
 }
+.new__message__overview__container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.new__message__image {
+	width: 200px;
+	height: 200px;
+}
+.header {
+	background-color: white;
+	width: 100%;
+	display: flex;
+	padding: 0.35rem 1rem;
+	align-items: center;
+	font-weight: bold;
+}
+.header button {
+	background-color: transparent;
+	border: none;
+}
+.header__user__container {
+	display: flex;
+	margin-bottom: 0.5rem;
+	background: white;
+	padding: 0.5rem 1rem;
+}
+.header__user__icon {
+	background-color: #3b82f6;
+	border-radius: 80%;
+	width: 100%;
+	max-width: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	margin: 0 0.5rem 0 2rem;
+	padding: 0 1.1rem;
+	position: relative;
+	height: 100%;
+	min-height: 5vh;
+}
+
+.header__status__icon {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: #4ade80;
+	border: 2px solid white;
+	bottom: 0;
+	right: -5px;
+	position: absolute;
+}
+
+#chat,
+#starred {
+	font-size: 1rem;
+	margin-left: 1rem;
+	cursor: pointer;
+}
+
+/* #chat:focus {
+	border-bottom: 2px solid #3b82f6;
+
+	font-weight: bold;
+}
+#starred:focus {
+	border-bottom: 2px solid #3b82f6;
+
+	font-weight: bold;
+} */
+.input__btn__container {
+	width: 100%;
+}
+.input__btn {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 7rem 1rem 7rem;
+	align-items: center;
+}
+.input__btn__grp {
+	display: flex;
+	gap: 0.5rem;
+	margin-left: 1rem;
+	cursor: pointer;
+}
+.input__btn__send {
+	margin-right: 1rem;
+	cursor: pointer;
+}

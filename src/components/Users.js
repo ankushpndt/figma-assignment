@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Users.css";
 import { useDispatch } from "react-redux";
-import { addMessage } from "../features/NewChat/chatSlice";
+import { addUser, singleUser } from "../features/NewChat/chatSlice";
 import AllUsers from "./AllUsers";
 import { BsChatDots } from "react-icons/bs";
+import { useSelector } from "react-redux";
 const Users = () => {
 	const [show, setShow] = useState(false);
 	const [inputValue, setInputValue] = useState("");
+	const [userIcon, setUserIcon] = useState("");
 	const dispatch = useDispatch();
+	const allUsers = useSelector((state) => state.Chat.users);
+	useEffect(() => {
+		let res = inputValue.split("");
+		let first = res[0];
+		let second = "";
+		for (let i = 0; i < res.length; i++) {
+			if (res[i] === " ") {
+				second = res[i + 1];
+			}
+		}
+		setUserIcon(first + second);
+	}, [inputValue]);
 
 	return (
 		<div className="users">
@@ -28,7 +42,14 @@ const Users = () => {
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
-							dispatch(addMessage(inputValue));
+							dispatch(
+								addUser({
+									icon: userIcon,
+									name: inputValue,
+									text: "Start a new chat...",
+								}),
+								dispatch(singleUser({ icon: userIcon, name: inputValue }))
+							);
 							setInputValue("");
 							setShow(false);
 						}}
@@ -42,7 +63,11 @@ const Users = () => {
 					</form>
 				</div>
 			)}
-			<AllUsers />
+			{allUsers.map((user, i) => (
+				<div key={i}>
+					<AllUsers key={i} specificUser={user} />
+				</div>
+			))}
 		</div>
 	);
 };

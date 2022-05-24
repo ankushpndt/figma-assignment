@@ -1,20 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import User from "./User";
+import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
-const AllUsers = () => {
-	const allUsers = useSelector((state) => state.Chat.users);
-
+import { singleUser } from "../features/NewChat/chatSlice";
+const AllUsers = ({ specificUser }) => {
+	const dispatch = useDispatch();
 	return (
 		<div className="all__users__container">
 			<ul>
-				{allUsers.map((user) => {
-					return (
-						<>
-							<User key={v4()} user={user} />
-						</>
-					);
-				})}
+				<div
+					key={v4()}
+					className="user__container"
+					onClick={() => {
+						dispatch(singleUser(specificUser));
+					}}
+				>
+					<p className="user__icon">
+						{specificUser.icon} <span className="status__icon"></span>
+					</p>
+					<div className="user__details">
+						<p className="user__name">{specificUser.name}</p>
+						<p className="user__text">{specificUser.text}</p>
+					</div>
+				</div>
 			</ul>
 		</div>
 	);
