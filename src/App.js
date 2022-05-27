@@ -1,20 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import "./App.css";
-import MessagesOverview from "./components/MessagesOverview";
+import InputList from "./components/InputList";
 import NewMessageOverview from "./components/NewMessageOverview";
-
+import { Routes, Route } from "react-router-dom";
 import Users from "./components/Users";
 
 const App = () => {
-	const allUsers = useSelector((state) => state.Chat.users);
 	return (
 		<div className="App">
 			<nav className="navbar">Smarter.Codes</nav>
-			<div className="components">
-				<Users />
-				{allUsers.length === 0 && <MessagesOverview />}
-				{allUsers.length > 0 && <NewMessageOverview />}
+			<div style={{ display: "flex" }}>
+				<div className="components">
+					<InputList />
+				</div>
+
+				<Routes>
+					<Route path="/" element={<Users />} />
+					<Route path="/inputlist" element={<InputList />} />
+					<Route
+						path="/newmessageoverview/:userId"
+						element={<NewMessageOverview />}
+					/>
+				</Routes>
 			</div>
 		</div>
 	);

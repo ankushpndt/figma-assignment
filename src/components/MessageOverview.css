@@ -4,6 +4,13 @@
 	justify-content: center;
 	align-items: center;
 }
+.message__overview {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 93vh;
+}
 .message__image {
 	width: 200px;
 	padding: 1rem;
@@ -14,6 +21,9 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	height: 100%;
+	min-height: 72vh;
+	padding-left: 5rem;
 }
 .new__message__image {
 	width: 200px;
@@ -23,7 +33,7 @@
 	background-color: white;
 	width: 100%;
 	display: flex;
-	padding: 0.35rem 1rem;
+	padding: 0.28rem 1rem 0 1rem;
 	align-items: center;
 	font-weight: bold;
 }
@@ -95,6 +105,7 @@
 	gap: 0.5rem;
 	margin-left: 1rem;
 	cursor: pointer;
+	align-items: center;
 }
 .input__btn__send {
 	margin-right: 1rem;
