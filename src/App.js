@@ -14,7 +14,7 @@ const App = () => {
 				</div>
 
 				<Routes>
-					<Route path="/" element={<InputList />} />
+					<Route path="/inputlist" element={<InputList />} />
 					<Route
 						path="/newmessageoverview/:userId"
 						element={<NewMessageOverview />}
