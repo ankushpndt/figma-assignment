@@ -44,7 +44,7 @@ const ChatSlice = createSlice({
 			};
 		},
 		addStarredMessage: (state, action) => {
-			return {
+			let test = {
 				...state,
 				users: state.users.map((item) => {
 					if (item?.id === action.payload?.message?.id) {
@@ -60,6 +60,8 @@ const ChatSlice = createSlice({
 					}
 				}),
 			};
+			console.log(test);
+			return test;
 		},
 		deleteFromStarredMessage: (state, action) => {
 			return {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./NewMessage.css";
 import ShareIcon from "@mui/icons-material/Share";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -12,7 +12,6 @@ import {
 } from "../../features/NewChat/chatSlice";
 const NewMessage = ({ message }) => {
 	const dispatch = useDispatch();
-	const [toggleStar, setToggleStar] = useState(false);
 	const allUsers = useSelector((state) => state.Chat.users);
 	const newArr = [];
 	allUsers.forEach((user) => {
@@ -60,7 +59,13 @@ const NewMessage = ({ message }) => {
 					</button>
 				</div>
 				<div style={{ fontSize: "1rem" }} className="message__value">
-					<div className="dropdown-content">
+					<div
+						className={
+							newArr.find((item) => item.messageId === message.messageId)
+								? "dropdown-content-starred"
+								: "dropdown-content"
+						}
+					>
 						<button
 							style={{
 								backgroundColor: "transparent",
@@ -69,10 +74,14 @@ const NewMessage = ({ message }) => {
 							}}
 							onClick={() => {
 								dispatch(addStarredMessage({ message }));
-								setToggleStar((toggleStar) => !toggleStar);
 							}}
+							disabled={
+								newArr.find((item) => item.messageId === message.messageId)
+									? true
+									: false
+							}
 						>
-							{toggleStar ? <StarIcon /> : <StarBorderIcon />}
+							<StarBorderIcon />
 						</button>
 						<button
 							style={{
