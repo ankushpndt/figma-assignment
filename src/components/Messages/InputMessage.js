@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { AiOutlineStar, AiOutlineSend } from "react-icons/ai";
 import { GrAttachment, GrEmoji } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage, updateUserDetails } from "../features/NewChat/chatSlice";
+import {
+	addMessage,
+	updateUserDetails,
+} from "../../features/NewChat/chatSlice";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import { v4 } from "uuid";
 import moment from "moment";

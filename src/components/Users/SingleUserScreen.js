@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { useSelector } from "react-redux";
 
-import NewMessageContainer from "./NewMessageContainer";
+import NewMessageContainer from "../Messages/NewMessageContainer";
 import "./SingleUserScreen.css";
-import Cover from "../assets/cover.svg";
-import StarredMessage from "./StarredMessage";
-import InputMessage from "./InputMessage";
+import Cover from "../../assets/cover.svg";
+import StarredMessage from "../Messages/StarredMessage";
+import InputMessage from "../Messages/InputMessage";
 const SingleUserScreen = ({ userId }) => {
 	const allUsers = useSelector((state) => state.Chat.users);
 	const singleUser = allUsers.find((item) => item.id === userId);
 
 	const [showChat, setShowChat] = useState(false);
 	const [showStarred, setShowStarred] = useState(false);
-
+	const chatButton = useRef(null);
+	useEffect(() => chatButton?.current?.click(), [chatButton]);
 	return (
 		<div
 			style={{
@@ -42,6 +43,7 @@ const SingleUserScreen = ({ userId }) => {
 				</>
 				<div className="buttons">
 					<button
+						ref={chatButton}
 						id="chat"
 						onClick={() => {
 							setShowChat(true);
@@ -49,7 +51,9 @@ const SingleUserScreen = ({ userId }) => {
 						}}
 						style={{
 							borderBottom: `${
-								showChat === true ? "3px solid #3b82f6" : "3px solid white"
+								showChat === true
+									? "3px solid #3b82f6"
+									: "3px solid transparent"
 							}`,
 							padding: "0.7rem 0",
 						}}
@@ -64,7 +68,9 @@ const SingleUserScreen = ({ userId }) => {
 						}}
 						style={{
 							borderBottom: `${
-								showStarred === true ? "3px solid #3b82f6" : "3px solid white"
+								showStarred === true
+									? "3px solid #3b82f6"
+									: "3px solid transparent"
 							}`,
 							padding: "0.7rem 0",
 						}}

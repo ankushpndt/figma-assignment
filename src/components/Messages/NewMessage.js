@@ -9,7 +9,7 @@ import {
 	addStarredMessage,
 	deleteFromMessage,
 	deleteFromStarredMessage,
-} from "../features/NewChat/chatSlice";
+} from "../../features/NewChat/chatSlice";
 const NewMessage = ({ message }) => {
 	const dispatch = useDispatch();
 	const [toggleStar, setToggleStar] = useState(false);
@@ -37,11 +37,11 @@ const NewMessage = ({ message }) => {
 						{message?.time}
 					</small>{" "}
 					<button
-						onClick={() =>
+						onClick={() => {
 							dispatch(
 								deleteFromStarredMessage({ messageId: message.messageId })
-							)
-						}
+							);
+						}}
 						style={{
 							backgroundColor: "transparent",
 							border: "none",
@@ -80,9 +80,9 @@ const NewMessage = ({ message }) => {
 								border: "none",
 								cursor: "pointer",
 							}}
-							onClick={() =>
-								dispatch(deleteFromMessage({ messageId: message.messageId }))
-							}
+							onClick={() => {
+								dispatch(deleteFromMessage({ messageId: message.messageId }));
+							}}
 						>
 							<DeleteIcon />
 						</button>

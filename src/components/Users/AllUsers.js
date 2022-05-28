@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -5,7 +6,8 @@ import { singleUser } from "../../features/NewChat/chatSlice";
 
 const AllUsers = ({ specificUser }) => {
 	const dispatch = useDispatch();
-
+	const userButton = useRef(null);
+	useEffect(() => userButton?.current.click(), [userButton]);
 	return (
 		<div className="all__users__container">
 			<ul>
@@ -13,6 +15,7 @@ const AllUsers = ({ specificUser }) => {
 					to={`/newmessageoverview/${specificUser?.id}`}
 					className="user__container"
 					style={{ textDecoration: "none", color: "black" }}
+					ref={userButton}
 					onClick={() => {
 						dispatch(singleUser(specificUser));
 					}}

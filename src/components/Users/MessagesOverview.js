@@ -1,5 +1,5 @@
 import React from "react";
-import Message from "../assets/message.svg";
+import Message from "../../assets/message.svg";
 import "./MessageOverview.css";
 const MessagesOverview = () => {
 	return (

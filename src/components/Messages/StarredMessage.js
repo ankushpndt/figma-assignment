@@ -3,7 +3,6 @@ import { v4 } from "uuid";
 import NewMessage from "./NewMessage";
 import "./StarredMessage.css";
 const StarredMessage = ({ starredMessages }) => {
-	console.log(starredMessages);
 	return (
 		<div className="starred__message__container">
 			{starredMessages?.map((message) => (
