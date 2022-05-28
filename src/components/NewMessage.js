@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NewMessage.css";
 import ShareIcon from "@mui/icons-material/Share";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -7,11 +7,13 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { useDispatch } from "react-redux";
 import {
 	addStarredMessage,
+	deleteFromMessage,
 	deleteFromStarredMessage,
 } from "../features/NewChat/chatSlice";
-import { v4 } from "uuid";
 const NewMessage = ({ message }) => {
 	const dispatch = useDispatch();
+	const [toggleStar, setToggleStar] = useState(false);
+	console.log(toggleStar);
 	return (
 		<div className="new__message__container">
 			<div
@@ -26,24 +28,49 @@ const NewMessage = ({ message }) => {
 					{message?.time}
 				</small>{" "}
 				<button
-					onClick={() => dispatch(deleteFromStarredMessage(message.messageId))}
+					onClick={() => dispatch(deleteFromStarredMessage({ id: message.id }))}
+					style={{
+						backgroundColor: "transparent",
+						border: "none",
+						cursor: "pointer",
+					}}
 				>
 					<StarIcon style={{ fontSize: "1rem", cursor: "pointer" }} />
 				</button>
 				<div style={{ fontSize: "1rem" }} className="message__value">
 					<div className="dropdown-content">
-						<a
-							href="#"
-							onClick={() => dispatch(addStarredMessage({ message }))}
+						<button
+							style={{
+								backgroundColor: "transparent",
+								border: "none",
+								cursor: "pointer",
+							}}
+							onClick={() => {
+								dispatch(addStarredMessage({ message }));
+								setToggleStar((toggleStar) => !toggleStar);
+							}}
 						>
-							<StarIcon />
-						</a>
-						<a href="#">
+							{toggleStar ? <StarIcon /> : <StarBorderIcon />}
+						</button>
+						<button
+							style={{
+								backgroundColor: "transparent",
+								border: "none",
+								cursor: "pointer",
+							}}
+							onClick={() => dispatch(deleteFromMessage({ id: message.id }))}
+						>
 							<DeleteIcon />
-						</a>
-						<a href="#">
+						</button>
+						<button
+							style={{
+								backgroundColor: "transparent",
+								border: "none",
+								cursor: "pointer",
+							}}
+						>
 							<ShareIcon />
-						</a>
+						</button>
 					</div>
 					{message?.messageValue}
 				</div>

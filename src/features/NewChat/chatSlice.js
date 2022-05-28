@@ -32,13 +32,24 @@ const ChatSlice = createSlice({
 				}),
 			};
 		},
+		deleteFromMessage: (state, action) => {
+			return {
+				...state,
+				users: state.users.map((item) => {
+					return {
+						...item,
+						messages: item.messages.filter((el) => el.id !== action.payload.id),
+					};
+				}),
+			};
+		},
 		addStarredMessage: (state, action) => {
 			return {
 				...state,
 				users: state.users.map((item) => {
 					return {
 						...item,
-						starredMessages: [...item.messages, action.payload],
+						starredMessages: [...item.starredMessages, action.payload.message],
 					};
 				}),
 			};
@@ -48,14 +59,12 @@ const ChatSlice = createSlice({
 			return {
 				...state,
 				users: state.users.map((item) => {
-					let test = {
+					return {
 						...item,
 						starredMessages: item.starredMessages.filter(
 							(el) => el.id !== action.payload.id
 						),
 					};
-					console.log({ test });
-					return test;
 				}),
 			};
 		},
@@ -67,5 +76,6 @@ export const {
 	addMessage,
 	addStarredMessage,
 	deleteFromStarredMessage,
+	deleteFromMessage,
 } = ChatSlice.actions;
 export default ChatSlice.reducer;
