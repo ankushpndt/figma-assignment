@@ -44,13 +44,21 @@ const ChatSlice = createSlice({
 			};
 		},
 		addStarredMessage: (state, action) => {
+			console.log({ state, action });
 			return {
 				...state,
 				users: state.users.map((item) => {
-					return {
-						...item,
-						starredMessages: [...item.starredMessages, action.payload.message],
-					};
+					if (item?.id === action.payload?.message?.id) {
+						return {
+							...item,
+							starredMessages: [
+								...item.starredMessages,
+								action.payload.message,
+							],
+						};
+					} else {
+						return item;
+					}
 				}),
 			};
 		},

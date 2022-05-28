@@ -18,22 +18,11 @@ const NewMessageOverview = () => {
 				backgroundColor: "#f1f5f9",
 			}}
 		>
-			{/* <div
-				style={{
-					width: "100%",
-					height: "100%",
-
-					display: "flex",
-				}}
-			>
-				{allUsers.length === 0 && <MessagesOverview />}
-			</div> */}
 			{allUsers.length === 0 ? (
 				<MessagesOverview />
 			) : (
 				userDetails.id === userId && <SingleUserScreen userId={userId} />
 			)}
-			{/* {userDetails.id === userId && <SingleUserScreen userId={userId} />} */}
 		</div>
 	);
 };

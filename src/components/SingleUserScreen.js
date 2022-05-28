@@ -100,9 +100,11 @@ const SingleUserScreen = ({ userId }) => {
 						</h5>
 					</div>
 				)}
+
 				{showStarred && (
 					<StarredMessage starredMessages={singleUser.starredMessages} />
 				)}
+
 				{showChat && <NewMessageContainer messages={singleUser.messages} />}
 			</div>
 

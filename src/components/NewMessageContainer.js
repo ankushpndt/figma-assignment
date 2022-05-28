@@ -6,10 +6,6 @@ const NewMessageContainer = ({ messages }) => {
 	return (
 		<div
 			style={{
-				// display: "flex",
-				// flexDirection: "column",
-				// gap: "0.5rem",
-				// paddingRight: "5.2rem",
 				width: "100%",
 				height: "100%",
 			}}
