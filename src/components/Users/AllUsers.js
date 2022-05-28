@@ -1,9 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-
 import { singleUser } from "../../features/NewChat/chatSlice";
-
 const AllUsers = ({ specificUser }) => {
 	const dispatch = useDispatch();
 	const userButton = useRef(null);

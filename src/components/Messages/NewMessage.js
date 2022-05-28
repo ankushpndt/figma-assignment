@@ -14,13 +14,13 @@ const NewMessage = ({ message }) => {
 	const dispatch = useDispatch();
 	const [toggleStar, setToggleStar] = useState(false);
 	const allUsers = useSelector((state) => state.Chat.users);
-	const [user] = allUsers;
-	let checkInStarredMessage;
-	checkInStarredMessage = user?.starredMessages?.find((item) => {
-		return item.messageId === message.messageId;
-	})
-		? true
-		: false;
+	const newArr = [];
+	allUsers.forEach((user) => {
+		if (user.id === message.id) {
+			const { starredMessages } = user;
+			newArr.push(...starredMessages);
+		}
+	});
 
 	return (
 		<div className="new__message__container">
@@ -48,7 +48,7 @@ const NewMessage = ({ message }) => {
 							cursor: "pointer",
 						}}
 					>
-						{checkInStarredMessage && (
+						{newArr.find((item) => item.messageId === message.messageId) && (
 							<StarIcon
 								style={{
 									fontSize: "1rem",

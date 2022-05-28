@@ -33,6 +33,7 @@ const InputMessage = ({ userId }) => {
 						updateUserDetails({
 							time: moment().format("LT"),
 							text: messageInput,
+							id: singleUser.id,
 						})
 					);
 					setMessageInput("");

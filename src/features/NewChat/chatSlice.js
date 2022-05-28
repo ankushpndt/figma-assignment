@@ -34,8 +34,6 @@ const ChatSlice = createSlice({
 			return {
 				...state,
 				users: state.users.map((item) => {
-					console.log(item?.id === action.payload?.id);
-
 					return {
 						...item,
 						messages: item.messages.filter(
@@ -80,11 +78,15 @@ const ChatSlice = createSlice({
 			return {
 				...state,
 				users: state.users.map((item) => {
-					return {
-						...item,
-						time: action.payload.time,
-						text: action.payload.text,
-					};
+					if (item.id === action.payload.id) {
+						return {
+							...item,
+							time: action.payload.time,
+							text: action.payload.text,
+						};
+					} else {
+						return item;
+					}
 				}),
 			};
 		},

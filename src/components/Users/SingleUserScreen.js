@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
 import { useSelector } from "react-redux";
-
 import NewMessageContainer from "../Messages/NewMessageContainer";
 import "./SingleUserScreen.css";
 import Cover from "../../assets/cover.svg";
@@ -10,7 +8,6 @@ import InputMessage from "../Messages/InputMessage";
 const SingleUserScreen = ({ userId }) => {
 	const allUsers = useSelector((state) => state.Chat.users);
 	const singleUser = allUsers.find((item) => item.id === userId);
-
 	const [showChat, setShowChat] = useState(false);
 	const [showStarred, setShowStarred] = useState(false);
 	const chatButton = useRef(null);
