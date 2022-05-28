@@ -32,38 +32,46 @@ const SingleUserScreen = ({ userId }) => {
 						{singleUser?.icon} <span className="header__status__icon"></span>
 					</p>
 					<div className="header__user__details">
-						<p className="header__user__name">{singleUser?.name}</p>
+						<p
+							className="header__user__name"
+							style={{ paddingBottom: "0.3rem" }}
+						>
+							{singleUser?.name}
+						</p>
 					</div>
 				</>
-
-				<button
-					id="chat"
-					onClick={() => {
-						setShowChat(true);
-						setShowStarred(false);
-					}}
-					style={{
-						borderBottom: `${showChat === true ? "3px solid #3b82f6" : "none"}`,
-						padding: "1rem 0",
-					}}
-				>
-					Chat
-				</button>
-				<button
-					id="starred"
-					onClick={() => {
-						setShowChat(false);
-						setShowStarred(true);
-					}}
-					style={{
-						borderBottom: `${
-							showStarred === true ? "3px solid #3b82f6" : "none"
-						}`,
-						padding: "1rem 0",
-					}}
-				>
-					Starred
-				</button>
+				<div className="buttons">
+					<button
+						id="chat"
+						onClick={() => {
+							setShowChat(true);
+							setShowStarred(false);
+						}}
+						style={{
+							borderBottom: `${
+								showChat === true ? "3px solid #3b82f6" : "3px solid white"
+							}`,
+							padding: "0.7rem 0",
+						}}
+					>
+						Chat
+					</button>
+					<button
+						id="starred"
+						onClick={() => {
+							setShowChat(false);
+							setShowStarred(true);
+						}}
+						style={{
+							borderBottom: `${
+								showStarred === true ? "3px solid #3b82f6" : "3px solid white"
+							}`,
+							padding: "0.7rem 0",
+						}}
+					>
+						Starred
+					</button>
+				</div>
 			</div>
 			<div className="NewMessageSingleUser">
 				{singleUser.messages?.length === 0 && (

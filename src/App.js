@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import InputList from "./components/InputList";
+import InputList from "./components/Users/InputList";
 import NewMessageOverview from "./components/NewMessageOverview";
 import { Routes, Route } from "react-router-dom";
-import Users from "./components/Users";
-
+// import moment from "moment";
 const App = () => {
+	// console.log(moment().subtract(1, "minute").fromNow());
 	return (
 		<div className="App">
 			<nav className="navbar">Smarter.Codes</nav>
@@ -15,7 +15,7 @@ const App = () => {
 				</div>
 
 				<Routes>
-					<Route path="/" element={<Users />} />
+					{/* <Route path="/" element={<Users />} /> */}
 					<Route path="/inputlist" element={<InputList />} />
 					<Route
 						path="/newmessageoverview/:userId"

@@ -3,9 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const ChatSlice = createSlice({
 	name: "Chat",
 	initialState: {
-		// messages: [],
 		users: [],
-		// starredMessage: [],
 		user: {
 			userDetails: {},
 		},
@@ -36,15 +34,18 @@ const ChatSlice = createSlice({
 			return {
 				...state,
 				users: state.users.map((item) => {
+					console.log(item?.id === action.payload?.id);
+
 					return {
 						...item,
-						messages: item.messages.filter((el) => el.id !== action.payload.id),
+						messages: item.messages.filter(
+							(el) => el.messageId !== action.payload.messageId
+						),
 					};
 				}),
 			};
 		},
 		addStarredMessage: (state, action) => {
-			console.log({ state, action });
 			return {
 				...state,
 				users: state.users.map((item) => {
@@ -63,15 +64,26 @@ const ChatSlice = createSlice({
 			};
 		},
 		deleteFromStarredMessage: (state, action) => {
-			console.log({ action });
 			return {
 				...state,
 				users: state.users.map((item) => {
 					return {
 						...item,
 						starredMessages: item.starredMessages.filter(
-							(el) => el.id !== action.payload.id
+							(el) => el.messageId !== action.payload.messageId
 						),
+					};
+				}),
+			};
+		},
+		updateUserDetails: (state, action) => {
+			return {
+				...state,
+				users: state.users.map((item) => {
+					return {
+						...item,
+						time: action.payload.time,
+						text: action.payload.text,
 					};
 				}),
 			};
@@ -85,5 +97,6 @@ export const {
 	addStarredMessage,
 	deleteFromStarredMessage,
 	deleteFromMessage,
+	updateUserDetails,
 } = ChatSlice.actions;
 export default ChatSlice.reducer;

@@ -4,7 +4,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	addStarredMessage,
 	deleteFromMessage,
@@ -13,30 +13,52 @@ import {
 const NewMessage = ({ message }) => {
 	const dispatch = useDispatch();
 	const [toggleStar, setToggleStar] = useState(false);
-	console.log(toggleStar);
+	const allUsers = useSelector((state) => state.Chat.users);
+	const [user] = allUsers;
+	let checkInStarredMessage;
+	checkInStarredMessage = user?.starredMessages?.find((item) => {
+		return item.messageId === message.messageId;
+	})
+		? true
+		: false;
+
 	return (
 		<div className="new__message__container">
 			<div
 				style={{ backgroundColor: "#bae6fd", padding: "0.5rem" }}
 				className="dropdown"
 			>
-				<small
-					style={{
-						fontSize: "10px",
-					}}
-				>
-					{message?.time}
-				</small>{" "}
-				<button
-					onClick={() => dispatch(deleteFromStarredMessage({ id: message.id }))}
-					style={{
-						backgroundColor: "transparent",
-						border: "none",
-						cursor: "pointer",
-					}}
-				>
-					<StarIcon style={{ fontSize: "1rem", cursor: "pointer" }} />
-				</button>
+				<div className="btn__header">
+					<small
+						style={{
+							fontSize: "10px",
+						}}
+					>
+						{message?.time}
+					</small>{" "}
+					<button
+						onClick={() =>
+							dispatch(
+								deleteFromStarredMessage({ messageId: message.messageId })
+							)
+						}
+						style={{
+							backgroundColor: "transparent",
+							border: "none",
+							cursor: "pointer",
+						}}
+					>
+						{checkInStarredMessage && (
+							<StarIcon
+								style={{
+									fontSize: "1rem",
+									cursor: "pointer",
+									color: "#0284c7",
+								}}
+							/>
+						)}
+					</button>
+				</div>
 				<div style={{ fontSize: "1rem" }} className="message__value">
 					<div className="dropdown-content">
 						<button
@@ -58,7 +80,9 @@ const NewMessage = ({ message }) => {
 								border: "none",
 								cursor: "pointer",
 							}}
-							onClick={() => dispatch(deleteFromMessage({ id: message.id }))}
+							onClick={() =>
+								dispatch(deleteFromMessage({ messageId: message.messageId }))
+							}
 						>
 							<DeleteIcon />
 						</button>

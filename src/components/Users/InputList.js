@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Users.css";
+import "../Users.css";
 import { useDispatch } from "react-redux";
-import { addUser } from "../features/NewChat/chatSlice";
+import { addUser } from "../../features/NewChat/chatSlice";
 import AllUsers from "./AllUsers";
 import { BsChatDots } from "react-icons/bs";
 import { useSelector } from "react-redux";
@@ -13,7 +13,6 @@ const InputList = () => {
 	const [userIcon, setUserIcon] = useState("");
 	const dispatch = useDispatch();
 	const allUsers = useSelector((state) => state.Chat.users);
-
 	useEffect(() => {
 		let res = inputValue.split("");
 		let first = res[0];
@@ -49,6 +48,7 @@ const InputList = () => {
 									icon: userIcon,
 									name: inputValue,
 									text: "Start a new chat...",
+									time: "",
 									messages: [],
 									starredMessages: [],
 									id: v4(),

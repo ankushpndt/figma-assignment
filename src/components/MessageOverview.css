@@ -33,9 +33,10 @@
 	background-color: white;
 	width: 100%;
 	display: flex;
-	padding: 0.28rem 1rem 0 1rem;
+	padding: 0.6rem 1rem 0.28rem 1rem;
 	align-items: center;
 	font-weight: bold;
+	height: 6.2vh;
 }
 .header button {
 	background-color: transparent;
@@ -56,7 +57,7 @@
 	align-items: center;
 	justify-content: center;
 	color: white;
-	margin: 0 0.5rem 0 2rem;
+	margin: 0 0.5rem 6px 2rem;
 	padding: 0 1.1rem;
 	position: relative;
 	height: 100%;

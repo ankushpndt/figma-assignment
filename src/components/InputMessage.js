@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineStar, AiOutlineSend } from "react-icons/ai";
 import { GrAttachment, GrEmoji } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "../features/NewChat/chatSlice";
+import { addMessage, updateUserDetails } from "../features/NewChat/chatSlice";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import { v4 } from "uuid";
 import moment from "moment";
@@ -11,6 +11,7 @@ const InputMessage = ({ userId }) => {
 	const singleUser = allUsers.find((item) => item.id === userId);
 	const [messageInput, setMessageInput] = useState("");
 	const dispatch = useDispatch();
+
 	return (
 		<div className="input__btn__container">
 			<form
@@ -21,9 +22,16 @@ const InputMessage = ({ userId }) => {
 							addMessage({
 								messageValue: messageInput,
 								time: moment().format("LT"),
-								id: singleUser?.id,
+								messageId: v4(),
+								id: singleUser.id,
 							})
 						);
+					dispatch(
+						updateUserDetails({
+							time: moment().format("LT"),
+							text: messageInput,
+						})
+					);
 					setMessageInput("");
 				}}
 			>

@@ -6,6 +6,11 @@
 	min-height: 93vh;
 	border-right: 1px solid #e7e5e4;
 }
+.user__name {
+	display: flex;
+	align-items: center;
+	gap: 4rem;
+}
 .all__chats {
 	display: flex;
 	justify-content: space-between;
