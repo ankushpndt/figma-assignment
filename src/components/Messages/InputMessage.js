@@ -29,13 +29,14 @@ const InputMessage = ({ userId }) => {
 								id: singleUser.id,
 							})
 						);
-					dispatch(
-						updateUserDetails({
-							time: moment().format("LT"),
-							text: messageInput,
-							id: singleUser.id,
-						})
-					);
+					messageInput.length > 0 &&
+						dispatch(
+							updateUserDetails({
+								time: moment().format("LT"),
+								text: messageInput,
+								id: singleUser.id,
+							})
+						);
 					setMessageInput("");
 				}}
 			>
